@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
       redirect_to login_url
     end
   end
+  #
+  # def show
+  #   @user = User.find(params[:id])
+  # end
 
   def counts(user)
     @count_microposts = user.microposts.count

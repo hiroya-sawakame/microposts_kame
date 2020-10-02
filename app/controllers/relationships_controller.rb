@@ -11,6 +11,9 @@ class RelationshipsController < ApplicationController
   def destroy
     user = User.find(params[:follow_id])
     current_user.unfollow(user)
+    # Userモデルにインスタンスメソッドを書かない場合は下記でも対応可能
+    # relationship = current_user.relationships.find_by(follow_id: user.id)
+    # relationship.destroy if relationship
     flash[:success] = 'ユーザのフォローを解除しました。'
     redirect_to user
   end

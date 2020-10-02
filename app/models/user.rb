@@ -45,6 +45,7 @@ class User < ApplicationRecord
   end
 
   def favorite(micropost)
+    # find_or_create_by は見つかればモデル（クラス）のインスタンスを返し、見つからなければ作成
     self.favorites.find_or_create_by(micropost_id: micropost.id)
   end
 
@@ -56,4 +57,6 @@ class User < ApplicationRecord
   def favoriting?(micropost)
     self.favoritings.include?(micropost)
   end
+
+  # selfはUserクラスをインスタンス化したもので、インスタンスに対するメソッドをこのファイルに記載
 end
