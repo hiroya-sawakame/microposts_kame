@@ -27,18 +27,21 @@ class UsersController < ApplicationController
     end
   end
 
+  # フォローしてくれている人一覧ページ
   def followings
     @user = User.find(params[:id])
     @followings = @user.followings.page(params[:page])
     counts(@user)
   end
 
+  # フォーローしている人一覧ページ
   def followers
     @user = User.find(params[:id])
     @followers = @user.followers.page(params[:page])
     counts(@user)
   end
 
+  # お気に入りしている投稿一覧ページ
   def favorites
     @user = User.find(params[:id])
     @favoritings = @user.favoritings.page(params[:page])
