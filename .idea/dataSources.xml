@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="microposts_kame_development@localhost" uuid="c49de5c0-f09f-48c1-8c9b-75419bd4ae04">
+    <data-source source="LOCAL" name="microposts_kame_development@localhost" uuid="af7aaf6c-6c33-43ad-aea2-a0cf8932a754">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/microposts_kame_development</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
 </project>

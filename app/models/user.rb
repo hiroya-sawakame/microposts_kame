@@ -7,18 +7,24 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :microposts
+
+  # 中間テーブル「relationships」は左側が自分のuser_id。右側がフォローしたユーザーのid(follow_id)
   has_many :relationships
-  # 下記「through: 〜」はよく使うので予めまとめて使いやすくしておく
-  # フォローしている人をまとめる
+
+  # 下記「through: 〜」はよく使うので、まとめておいて使いやすくしておく
+  # 中間テーブルの右半分をまとめたもの。「自分がフォローしているUser」への参照
   has_many :followings, through: :relationships, source: :follow
 
+  #Rails の命名規則により、User から Relationship を取得するとき、user_id が使用されるので逆方向では、foreign_key: 'follow_id' と指定して、 user_id 側ではないことを明示する
   has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id'
-  # フォローしてくれてる人をまとめる
+
+  # 中間テーブルの左半分をまとめたもの。「自分をフォローしているUser」への参照
   has_many :followers, through: :reverses_of_relationship, source: :user
 
-  has_many :favorites
   # お気に入りしている投稿をまとめる
-  has_many :favoritings, through: :favorites, source: :micropost
+  has_many :favorites
+  has_many :my_favorites, through: :favorites, source: :micropost
+  # お気に入りされている投稿をまとめる必要がないので左側のみ
 
   # 自分以外のユーザーであることを確認しfollow_idを作成する
   def follow(other_user)
@@ -54,9 +60,8 @@ class User < ApplicationRecord
     favorites.destroy if favorites
   end
 
-  def favoriting?(micropost)
-    self.favoritings.include?(micropost)
+  def my_favorite?(micropost)
+    self.my_favorites.include?(micropost)
   end
-
   # selfはUserクラスをインスタンス化したもので、インスタンスに対するメソッドをこのファイルに記載
 end

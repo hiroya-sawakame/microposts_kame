@@ -11,9 +11,9 @@
         </div>
         <div style="display: flex;">
           <% if current_user == micropost.user %>
-            <%= link_to "Delete", micropost, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+            <%= link_to "投稿を削除", micropost, method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'btn btn-danger btn-sm' %>
           <% end %>
-          <%= render 'favorites/favorites_button', micropost: micropost %>
+          <%= render 'favorites/favorites_button', micropost: micropost, user: @user %>
         </div>
       </div>
     </li>

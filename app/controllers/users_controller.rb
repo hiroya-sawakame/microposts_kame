@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   # お気に入りしている投稿一覧ページ
   def favorites
     @user = User.find(params[:id])
-    @favoritings = @user.favoritings.page(params[:page])
+    @my_favorites = @user.my_favorites.page(params[:page])
     counts(@user)
   end
 
