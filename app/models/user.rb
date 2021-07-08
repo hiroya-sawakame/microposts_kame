@@ -11,8 +11,9 @@ class User < ApplicationRecord
   # 中間テーブル「relationships」は左側が自分のuser_id。右側がフォローしたユーザーのid(follow_id)
   has_many :relationships
 
-  # 下記「through: 〜」はよく使うので、まとめておいて使いやすくしておく
+  # 下記「through: 〜」は「〜を使って」の意味
   # 中間テーブルの右半分をまとめたもの。「自分がフォローしているUser」への参照
+  # relationships を使って、follow_idを集めてfollowingsを作ります。
   has_many :followings, through: :relationships, source: :follow
 
   #Rails の命名規則により、User から Relationship を取得するとき、user_id が使用されるので逆方向では、foreign_key: 'follow_id' と指定して、 user_id 側ではないことを明示する
@@ -63,5 +64,4 @@ class User < ApplicationRecord
   def my_favorite?(micropost)
     self.my_favorites.include?(micropost)
   end
-  # selfはUserクラスをインスタンス化したもので、インスタンスに対するメソッドをこのファイルに記載
 end
