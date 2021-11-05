@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
   # def show
   #   @user = User.find(params[:id])
   # end
+  #
+  # def index
+  #   rebase test
+  # end
 
   def counts(user)
     @count_microposts = user.microposts.count
