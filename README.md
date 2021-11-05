@@ -1,4 +1,2 @@
 ツイッタークローン
-master rebase test
-ppp
-ooo
+rebase_test
